@@ -87,9 +87,6 @@ function Login() {
           {isLogin ? 'Register' : 'Login'}
         </button>
       </p>
-      <p style={{ marginTop: '8px', fontSize: '14px', color: '#666' }}>
-        Admin: username <strong>admin</strong>, password <strong>admin</strong>
-      </p>
     </div>
   );
 }
