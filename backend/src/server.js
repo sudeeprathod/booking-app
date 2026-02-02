@@ -8,6 +8,7 @@ const seedAdmin = require('./config/seedAdmin');
 const eventRoutes = require('./routes/eventRoutes');
 const authRoutes = require('./routes/authRoutes');
 const { apiLimiter } = require('./middleware/rateLimiter');
+const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -39,7 +40,16 @@ start().catch((err) => {
 });
 
 // In-memory cache is automatically available (no connection needed)
-
+app.use(
+  express.static(
+    path.join(__dirname, "../frontend/dist")
+  )
+);
+app.get("*", (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "../frontend/dist/index.html")
+  );
+});
 // Security middleware
 app.use(helmet());
 app.use(cors());
